@@ -1,1 +1,729 @@
 
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Professional Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0d1117;
+      --bg2:#151b23;
+      --panel:rgba(255,255,255,.06);
+      --line:rgba(212,175,55,.22);
+      --gold:#d4af37;
+      --gold-soft:#f4e2a0;
+      --text:#f7f8fb;
+      --muted:#aab3c5;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius-xl:28px;
+      --radius-lg:20px;
+      --radius-md:14px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Inter',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(212,175,55,.10), transparent 24%),
+        radial-gradient(circle at bottom left, rgba(212,175,55,.08), transparent 20%),
+        linear-gradient(180deg,#0a0c10 0%,#10141b 100%);
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    .container{
+      width:min(1180px, calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(12px);
+      background:rgba(10,12,18,.72);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:16px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .brand-mark{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--gold),#9b7b18);
+      color:#151515;
+      font-weight:800;
+      box-shadow:0 10px 30px rgba(212,175,55,.25);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      color:var(--muted);
+      transition:.25s ease;
+      font-size:.95rem;
+    }
+
+    .nav-links a:hover{color:var(--gold-soft)}
+
+    .menu-toggle{
+      display:none;
+      background:transparent;
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;
+      padding:10px 14px;
+      font-size:1rem;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border:none;
+      border-radius:999px;
+      padding:12px 20px;
+      font-weight:600;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+
+    .btn-gold{
+      color:#151515;
+      background:linear-gradient(135deg,#efd778,#c89f1f);
+      box-shadow:0 12px 28px rgba(212,175,55,.28);
+    }
+
+    .btn-outline{
+      background:transparent;
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.14);
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .hero{
+      padding:72px 0 34px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:18px;
+      color:var(--gold-soft);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:.82rem;
+    }
+
+    h1,h2,h3{
+      margin:0;
+    }
+
+    .hero h1{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.4rem,5vw,4.7rem);
+      line-height:1.08;
+      letter-spacing:-.02em;
+      margin-bottom:16px;
+    }
+
+    .hero p{
+      color:var(--muted);
+      font-size:1.05rem;
+      line-height:1.8;
+      margin:0 0 24px;
+      max-width:700px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:24px;
+    }
+
+    .hero-mini{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .stat-card,
+    .card,
+    .timeline-item,
+    .skill-box,
+    .contact-card{
+      background:var(--panel);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    .stat-card{
+      padding:18px;
+      border-radius:var(--radius-lg);
+    }
+
+    .stat-card strong{
+      display:block;
+      color:var(--gold-soft);
+      font-size:1.45rem;
+      margin-bottom:6px;
+    }
+
+    .stat-card span{
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .profile-panel{
+      min-height:560px;
+      border-radius:var(--radius-xl);
+      overflow:hidden;
+      position:relative;
+      background:
+        linear-gradient(180deg, rgba(10,12,18,.10), rgba(10,12,18,.80)),
+        url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    .profile-overlay{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      padding:22px;
+      border-radius:22px;
+      background:rgba(9,12,18,.72);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .profile-overlay h3{
+      font-size:1.5rem;
+      margin-bottom:8px;
+    }
+
+    .profile-overlay p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    section{
+      padding:26px 0 48px;
+    }
+
+    .section-head{
+      margin-bottom:24px;
+    }
+
+    .section-head h2{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.8rem,3vw,2.7rem);
+      margin-bottom:8px;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:760px;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .card{
+      border-radius:var(--radius-xl);
+      padding:24px;
+    }
+
+    .info-list{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .info-item{
+      padding:16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .info-item strong{
+      display:block;
+      margin-bottom:6px;
+      color:var(--gold-soft);
+      font-size:.9rem;
+    }
+
+    .info-item span{color:var(--text)}
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .skill-box{
+      border-radius:22px;
+      padding:22px;
+      text-align:left;
+    }
+
+    .skill-box h3{
+      font-size:1.08rem;
+      margin-bottom:10px;
+    }
+
+    .skill-box p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:.95rem;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .tags span{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(212,175,55,.10);
+      border:1px solid rgba(212,175,55,.20);
+      color:var(--gold-soft);
+      font-size:.84rem;
+    }
+
+    .timeline{
+      display:grid;
+      gap:18px;
+    }
+
+    .timeline-item{
+      border-radius:24px;
+      padding:22px;
+      position:relative;
+    }
+
+    .timeline-item::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:3px;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity:.8;
+    }
+
+    .timeline-top{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .timeline-item .date{
+      color:var(--gold-soft);
+      font-size:.9rem;
+      white-space:nowrap;
+    }
+
+    .timeline-item p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+    }
+
+    .contact-card{
+      border-radius:var(--radius-xl);
+      padding:24px;
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .contact-box{
+      padding:18px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .contact-box strong{
+      display:block;
+      color:var(--gold-soft);
+      margin-bottom:6px;
+    }
+
+    .contact-box span{
+      color:var(--text);
+      word-break:break-word;
+    }
+
+    .footer{
+      padding:28px 0 46px;
+      text-align:center;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width: 1024px){
+      .hero-grid,
+      .about-grid{
+        grid-template-columns:1fr;
+      }
+      .skills-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+      .contact-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+      .profile-panel{min-height:460px}
+    }
+
+    @media (max-width: 768px){
+      .menu-toggle{display:inline-flex}
+      .nav{align-items:flex-start;flex-direction:column}
+      .nav-main{width:100%;display:flex;justify-content:space-between;align-items:center}
+      .nav-links{width:100%;display:none;flex-direction:column;align-items:stretch;padding-top:10px}
+      .nav-links.open{display:flex}
+      .hero-mini,
+      .info-list,
+      .skills-grid,
+      .contact-grid{grid-template-columns:1fr}
+      .hero{padding-top:46px}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="nav-main">
+        <a href="#home" class="brand">
+          <span class="brand-mark">M</span>
+          <span>My Profile</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="btn btn-gold">Hire Me</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="eyebrow">Personal Portfolio Website</span>
+          <h1>สวัสดี ฉันคือ <br>ชื่อ นามสกุล ของคุณ</h1>
+          <p>
+            ฉันเป็นผู้มีความสนใจและความสามารถในสายงานของตนเอง พร้อมสร้างผลงานที่มีคุณภาพ
+            และพัฒนาตัวเองอย่างต่อเนื่อง เว็บไซต์นี้จัดทำขึ้นเพื่อแสดงประวัติส่วนตัว ประสบการณ์
+            ทักษะ และช่องทางติดต่อในรูปแบบที่ดูหรูหรา สุภาพ และเป็นมืออาชีพ
+          </p>
+          <div class="hero-actions">
+            <a href="#about" class="btn btn-gold">ดูประวัติของฉัน</a>
+            <a href="#contact" class="btn btn-outline">ติดต่อฉัน</a>
+          </div>
+          <div class="hero-mini">
+            <div class="stat-card">
+              <strong>5+</strong>
+              <span>Years Experience</span>
+            </div>
+            <div class="stat-card">
+              <strong>20+</strong>
+              <span>Projects Completed</span>
+            </div>
+            <div class="stat-card">
+              <strong>100%</strong>
+              <span>Professional Mindset</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="profile-panel">
+            <div class="profile-overlay">
+              <h3>Professional Profile</h3>
+              <p>
+                คุณสามารถเปลี่ยนรูปภาพนี้เป็นรูปของคุณเอง และแก้ไขข้อความทั้งหมดให้เป็นข้อมูลจริง
+                เช่น ตำแหน่งงาน ความเชี่ยวชาญ ผลงานเด่น หรือเป้าหมายในสายอาชีพ
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>About Me</h2>
+          <p>ส่วนนี้ใช้สำหรับแนะนำตัวตนของคุณอย่างชัดเจน ทั้งข้อมูลส่วนตัว การศึกษา ความสนใจ และแนวทางการทำงาน</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card reveal">
+            <h3 style="margin-bottom:14px;">ประวัติส่วนตัว</h3>
+            <p style="margin:0; color:var(--muted); line-height:1.8;">
+              ฉันเป็นคนที่มีความมุ่งมั่น รับผิดชอบต่อหน้าที่ และพร้อมเรียนรู้สิ่งใหม่อยู่เสมอ
+              มีความสนใจในงานที่ต้องใช้ความคิดสร้างสรรค์ การสื่อสาร การวางแผน และการพัฒนาผลงานให้ดีที่สุด
+              สามารถทำงานร่วมกับผู้อื่นได้ดี และให้ความสำคัญกับคุณภาพของงานทุกขั้นตอน
+            </p>
+
+            <div class="info-list">
+              <div class="info-item">
+                <strong>ชื่อ - นามสกุล</strong>
+                <span>กรอกชื่อของคุณที่นี่</span>
+              </div>
+              <div class="info-item">
+                <strong>ชื่อเล่น</strong>
+                <span>กรอกชื่อเล่น</span>
+              </div>
+              <div class="info-item">
+                <strong>วันเกิด</strong>
+                <span>01 January 2000</span>
+              </div>
+              <div class="info-item">
+                <strong>ที่อยู่</strong>
+                <span>Bangkok, Thailand</span>
+              </div>
+              <div class="info-item">
+                <strong>การศึกษา</strong>
+                <span>ปริญญาตรี / ปริญญาโท</span>
+              </div>
+              <div class="info-item">
+                <strong>อาชีพเป้าหมาย</strong>
+                <span>Web Developer / Designer / Officer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h3 style="margin-bottom:14px;">จุดเด่นของฉัน</h3>
+            <p style="margin:0; color:var(--muted); line-height:1.8;">
+              ฉันมีความสามารถในการปรับตัวเข้ากับงานและสภาพแวดล้อมใหม่ ๆ ได้ดี
+              มีความละเอียดรอบคอบ พร้อมรับผิดชอบงานที่ได้รับมอบหมาย และสามารถสื่อสารแนวคิดออกมาได้อย่างเป็นระบบ
+            </p>
+            <div class="tags">
+              <span>Creative Thinking</span>
+              <span>Professional Communication</span>
+              <span>Teamwork</span>
+              <span>Problem Solving</span>
+              <span>Responsibility</span>
+              <span>Fast Learning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>My Skills</h2>
+          <p>ตัวอย่างส่วนแสดงทักษะหลัก สามารถเปลี่ยนเป็นทักษะจริงของคุณได้ทั้งหมด</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-box reveal">
+            <h3>Communication</h3>
+            <p>มีทักษะในการสื่อสาร การอธิบายงาน และการประสานงานกับผู้อื่นได้อย่างเหมาะสม</p>
+          </div>
+          <div class="skill-box reveal">
+            <h3>Design & Presentation</h3>
+            <p>สามารถออกแบบงานนำเสนอ หน้าเว็บ หรือผลงานให้มีความสวยงามและดูเป็นมืออาชีพ</p>
+          </div>
+          <div class="skill-box reveal">
+            <h3>Technology</h3>
+            <p>มีพื้นฐานด้าน HTML, CSS, JavaScript, Microsoft Office หรือเครื่องมือดิจิทัลที่เกี่ยวข้อง</p>
+          </div>
+          <div class="skill-box reveal">
+            <h3>Work Discipline</h3>
+            <p>ตรงต่อเวลา มีความรับผิดชอบ และทำงานตามเป้าหมายที่วางไว้ได้อย่างมีประสิทธิภาพ</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Experience & Achievements</h2>
+          <p>ส่วนนี้ใช้แสดงประสบการณ์ฝึกงาน การทำงานจริง โครงการ หรือผลงานที่คุณภูมิใจ</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <div class="timeline-top">
+              <div>
+                <h3>Internship / Work Experience</h3>
+                <div style="color:var(--muted); margin-top:6px;">Company / Organization Name</div>
+              </div>
+              <div class="date">2024 - 2025</div>
+            </div>
+            <p>
+              อธิบายหน้าที่รับผิดชอบของคุณ เช่น ดูแลเอกสาร ประสานงาน พัฒนาเว็บไซต์ จัดทำสื่อ
+              หรือช่วยงานด้านข้อมูล พร้อมผลลัพธ์ที่เกิดขึ้นจากการทำงาน
+            </p>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="timeline-top">
+              <div>
+                <h3>Project Highlight</h3>
+                <div style="color:var(--muted); margin-top:6px;">Personal / Academic Project</div>
+              </div>
+              <div class="date">2025</div>
+            </div>
+            <p>
+              อธิบายโครงการที่เคยทำ เช่น เว็บไซต์ ระบบฐานข้อมูล งานวิจัย งานออกแบบ หรือกิจกรรมที่มีบทบาทสำคัญ
+              พร้อมระบุสิ่งที่คุณได้เรียนรู้และจุดเด่นของผลงานนั้น
+            </p>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="timeline-top">
+              <div>
+                <h3>Award / Certificate</h3>
+                <div style="color:var(--muted); margin-top:6px;">Recognition / Achievement</div>
+              </div>
+              <div class="date">2023 - 2026</div>
+            </div>
+            <p>
+              ระบุรางวัล ใบประกาศนียบัตร หรือความสำเร็จที่เคยได้รับ เพื่อช่วยเพิ่มความน่าเชื่อถือให้โปรไฟล์ของคุณ
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Contact Me</h2>
+          <p>ช่องทางการติดต่อสำหรับผู้ว่าจ้าง ผู้สนใจ หรือบุคคลที่ต้องการติดต่อคุณโดยตรง</p>
+        </div>
+
+        <div class="contact-card reveal">
+          <div class="contact-grid">
+            <div class="contact-box">
+              <strong>Email</strong>
+              <span>yourname@email.com</span>
+            </div>
+            <div class="contact-box">
+              <strong>Phone</strong>
+              <span>+66 xx xxx xxxx</span>
+            </div>
+            <div class="contact-box">
+              <strong>Facebook / LinkedIn</strong>
+              <span>@yourprofile</span>
+            </div>
+            <div class="contact-box">
+              <strong>Portfolio</strong>
+              <span>www.yourportfolio.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Personal profile website template designed with a luxury and professional visual style.
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
